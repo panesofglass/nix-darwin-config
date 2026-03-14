@@ -61,6 +61,16 @@
     elixir
     erlang
 
+    # Dotnet
+    (with dotnetCorePackages; combinePackages [
+      sdk_8_0
+      sdk_9_0
+      sdk_10_0
+    ])
+    fsautocomplete
+    fantomas
+    powershell
+
     # Cloud & infra
     awscli2
     azure-cli
