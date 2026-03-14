@@ -11,7 +11,6 @@
     };
     ".claude/settings.json".source = ../dotfiles/claude-settings.json;
     ".gitignore_global".source = ../dotfiles/gitignore_global;
-    "Library/Application Support/iTerm2/DynamicProfiles/profile.json".source = ../dotfiles/iterm2-profile.json;
   };
 
   # ── Environment variables (replaces .zshenv) ─────────────────────────
