@@ -111,15 +111,47 @@
       cleanup = "zap";  # Remove anything not declared here
     };
     casks = [
+      # Productivity
+      "1password"
       "1password-cli"
-      "alt-tab"
+      "chatgpt"
+      "claude"
       "claude-code"
+      "cleanmymac"
+      "discord"
+      "microsoft-edge"
+      "microsoft-teams"
+      "signal"
+      "slack"
+      "zoom"
+
+      # Dev tools
+      "docker"
       "iterm2"
       "lm-studio"
       "powershell"
+      "visual-studio-code"
+
+      # Utilities
+      "alt-tab"
+      "rectangle"
+      "vlc"
+
+      # Creative / hobby
+      "bambu-studio"
+      "blender"
+      "epic-games"
+      "obs"
+      "raspberry-pi-imager"
+      "steam"
+      "unity-hub"
+
+      # Fonts
       "font-fira-code-nerd-font"
       "font-hack-nerd-font"
       "font-jetbrains-mono-nerd-font"
+
+      # Third-party taps
       "entireio/tap/entire"
     ];
     taps = [
