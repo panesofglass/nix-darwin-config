@@ -119,6 +119,7 @@
       "font-fira-code-nerd-font"
       "font-hack-nerd-font"
       "font-jetbrains-mono-nerd-font"
+      "entireio/tap/entire"
     ];
     taps = [
       "entireio/tap"
@@ -128,7 +129,6 @@
       "azure-functions-core-tools@4"
       "sqlcmd"
       "claude-squad"
-      "entireio/tap/entire"
     ];
   };
 
