@@ -124,6 +124,7 @@
   # ── Zsh (replaces .zshrc, .zshenv, .zprofile) ───────────────────────
   programs.zsh = {
     enable = true;
+    completionInit = "autoload -U compinit && compinit -u";
     shellAliases = {
       rebuild = "sudo darwin-rebuild switch --flake ~/nix-config";
     };
@@ -132,4 +133,5 @@
       [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
     '';
   };
+
 }
