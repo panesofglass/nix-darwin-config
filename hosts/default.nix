@@ -96,6 +96,7 @@
 
     # Misc CLI
     gh         # GitHub CLI
+    mas        # Mac App Store CLI
     watchman
     fop
     unixODBC

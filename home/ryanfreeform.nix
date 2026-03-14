@@ -9,6 +9,9 @@
       source = ../dotfiles/nvim-ryanfreeform;
       recursive = true;
     };
+    ".claude/settings.json".source = ../dotfiles/claude-settings.json;
+    ".gitignore_global".source = ../dotfiles/gitignore_global;
+    "Library/Application Support/iTerm2/DynamicProfiles/profile.json".source = ../dotfiles/iterm2-profile.json;
   };
 
   # ── Environment variables (replaces .zshenv) ─────────────────────────
@@ -70,6 +73,7 @@
       user.email = "ryan@freeformagency.com";
       core.editor = "nvim";
       pull.rebase = false;
+      core.excludesFile = "~/.gitignore_global";
     };
   };
 
@@ -133,6 +137,12 @@
       # Detach
       bind C-d detach
     '';
+  };
+
+  # ── direnv ──────────────────────────────────────────────────────────
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
   };
 
   # ── Zsh (replaces .zshrc, .zshenv, .zprofile) ───────────────────────

@@ -9,6 +9,9 @@
       source = ../dotfiles/nvim;
       recursive = true;
     };
+    ".claude/settings.json".source = ../dotfiles/claude-settings.json;
+    ".gitignore_global".source = ../dotfiles/gitignore_global;
+    "Library/Application Support/iTerm2/DynamicProfiles/profile.json".source = ../dotfiles/iterm2-profile.json;
   };
 
   # ── Environment variables (replaces .zshenv) ─────────────────────────
@@ -54,6 +57,7 @@
       # gh auth git-credential — nix provides gh on PATH, no hardcoded asdf path
       credential."https://github.com".helper = "!/run/current-system/sw/bin/gh auth git-credential";
       credential."https://gist.github.com".helper = "!/run/current-system/sw/bin/gh auth git-credential";
+      core.excludesFile = "~/.gitignore_global";
     };
   };
 
@@ -119,6 +123,12 @@
       # Detach
       bind C-d detach
     '';
+  };
+
+  # ── direnv ──────────────────────────────────────────────────────────
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;   # Caches nix shells for fast reload
   };
 
   # ── Zsh (replaces .zshrc, .zshenv, .zprofile) ───────────────────────
