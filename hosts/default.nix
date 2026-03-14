@@ -98,7 +98,7 @@
     gh         # GitHub CLI
     watchman
     fop
-    unixodbc
+    unixODBC
   ];
 
   # ── Homebrew (for casks and formulae not in nixpkgs) ──────────────────
@@ -120,7 +120,6 @@
       "font-jetbrains-mono-nerd-font"
     ];
     taps = [
-      "homebrew/cask-fonts"
     ];
     # Formulae that don't have good nix equivalents
     brews = [
@@ -142,6 +141,9 @@
 
   # ── Shell ─────────────────────────────────────────────────────────────
   programs.zsh.enable = true;
+
+  # Primary user for homebrew, system defaults, etc.
+  system.primaryUser = "ryanr";
 
   # Users managed by home-manager
   users.users.ryanr = {

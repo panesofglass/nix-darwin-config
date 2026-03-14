@@ -16,7 +16,6 @@
   home.packages = with pkgs; [
     jdk17          # Java 17 for Kotlin/Java projects
     rbenv          # Ruby 2.7 for legacy CocoaPods (not in nixpkgs)
-    ruby-build     # rbenv plugin to install ruby versions
   ];
 
   home.sessionVariables = {
@@ -41,6 +40,7 @@
   # 1Password agent first, ff_ed25519 key as fallback
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     matchBlocks = {
       "github.com" = {
         hostname = "github.com";
@@ -65,9 +65,9 @@
   # ── Git (replaces ~/.gitconfig) ──────────────────────────────────────
   programs.git = {
     enable = true;
-    userName = "Ryan Riley";
-    userEmail = "ryan@freeformagency.com";
-    extraConfig = {
+    settings = {
+      user.name = "Ryan Riley";
+      user.email = "ryan@freeformagency.com";
       core.editor = "nvim";
       pull.rebase = false;
     };
@@ -141,7 +141,7 @@
     shellAliases = {
       rebuild = "darwin-rebuild switch --flake ~/nix-config";
     };
-    initExtra = ''
+    initContent = ''
       # Cargo env (for rustup-managed toolchains)
       [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 

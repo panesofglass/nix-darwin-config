@@ -59,7 +59,8 @@ nix-config/
 
 ```bash
 # Bootstrap nix-darwin (first time only)
-nix run nix-darwin -- switch --flake ~/nix-config
+cd ~/nix-config
+/nix/var/nix/profiles/default/bin/nix build nix-darwin#darwin-rebuild && sudo ./result/bin/darwin-rebuild switch --flake .
 
 # After first successful switch, darwin-rebuild is on PATH
 darwin-rebuild switch --flake ~/nix-config

@@ -32,6 +32,7 @@
   # ── SSH (replaces ~/.ssh/config) ─────────────────────────────────────
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     matchBlocks = {
       "github.com" = {
         hostname = "github.com";
@@ -46,16 +47,14 @@
   # ── Git (replaces ~/.gitconfig) ──────────────────────────────────────
   programs.git = {
     enable = true;
-    userName = "Ryan Riley";
-    userEmail = "ryanriley@live.com";
-    extraConfig = {
+    settings = {
+      user.name = "Ryan Riley";
+      user.email = "ryanriley@live.com";
       core.editor = "nvim";
+      # gh auth git-credential — nix provides gh on PATH, no hardcoded asdf path
+      credential."https://github.com".helper = "!/run/current-system/sw/bin/gh auth git-credential";
+      credential."https://gist.github.com".helper = "!/run/current-system/sw/bin/gh auth git-credential";
     };
-    # gh auth git-credential — nix provides gh on PATH, no hardcoded asdf path
-    extraConfig.credential."https://github.com".helper = "!/run/current-system/sw/bin/gh auth git-credential";
-    extraConfig.credential."https://gist.github.com".helper = "!/run/current-system/sw/bin/gh auth git-credential";
-    includes = [
-    ];
   };
 
   # ── Starship prompt ──────────────────────────────────────────────────
@@ -128,7 +127,7 @@
     shellAliases = {
       rebuild = "darwin-rebuild switch --flake ~/nix-config";
     };
-    initExtra = ''
+    initContent = ''
       # Cargo env (for rustup-managed toolchains)
       [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
     '';
