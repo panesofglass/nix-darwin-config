@@ -69,7 +69,6 @@
     ])
     fsautocomplete
     fantomas
-    fable
     ilspycmd
     powershell
 
