@@ -64,6 +64,9 @@ cd ~/nix-config
 
 # After first successful switch, darwin-rebuild is on PATH
 darwin-rebuild switch --flake ~/nix-config
+
+# Or use the shorter alias
+rebuild
 ```
 
 ### Day-to-day
