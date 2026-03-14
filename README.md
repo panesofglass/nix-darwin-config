@@ -30,7 +30,7 @@ nix-config/
 - Languages: go, rustup, nodejs 22, python 3.12, elixir, erlang
 - Cloud/infra: awscli2, azure-cli, terraform, packer, sops, age
 - Editors/terminal: neovim, tmux, starship, lazygit
-- Homebrew casks: iTerm2, 1Password CLI, nerd fonts, LM Studio, etc.
+- Homebrew casks: iTerm2, 1Password CLI, nerd fonts, LM Studio, Entire, etc.
 - Homebrew brews (no nix equivalent): azure-functions-core-tools, sqlcmd, claude-squad
 - macOS defaults, Touch ID sudo, zsh
 
@@ -63,9 +63,9 @@ cd ~/nix-config
 /nix/var/nix/profiles/default/bin/nix build nix-darwin#darwin-rebuild && sudo ./result/bin/darwin-rebuild switch --flake .
 
 # After first successful switch, darwin-rebuild is on PATH
-darwin-rebuild switch --flake ~/nix-config
+sudo darwin-rebuild switch --flake ~/nix-config
 
-# Or use the shorter alias
+# Or use the shorter alias (includes sudo)
 rebuild
 ```
 
@@ -73,13 +73,13 @@ rebuild
 
 ```bash
 # Edit config, then rebuild
-rebuild    # alias for: darwin-rebuild switch --flake ~/nix-config
+rebuild    # alias for: sudo darwin-rebuild switch --flake ~/nix-config
 ```
 
 ### Rollback
 
 ```bash
-darwin-rebuild switch --rollback
+sudo darwin-rebuild switch --rollback
 ```
 
 ### Multi-account workflow
@@ -89,7 +89,7 @@ Both accounts run `darwin-rebuild switch` from their own clone of this repo. The
 ```bash
 # From ryanfreeform account:
 git clone git@github.com:panesofglass/nix-darwin-config.git ~/nix-config
-darwin-rebuild switch --flake ~/nix-config
+sudo darwin-rebuild switch --flake ~/nix-config
 ```
 
 ## Migration from Homebrew/asdf
