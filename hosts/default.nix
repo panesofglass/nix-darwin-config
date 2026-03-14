@@ -143,7 +143,13 @@
   security.pam.services.sudo_local.touchIdAuth = true;
 
   # ── Shell ─────────────────────────────────────────────────────────────
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    # Disable system-level compinit; home-manager runs compinit -u instead.
+    # /nix/store is group-writable (nixbld), which compinit flags as insecure.
+    # This is safe — the nix store is append-only and daemon-protected.
+    enableGlobalCompInit = false;
+  };
 
   # Primary user for homebrew, system defaults, etc.
   system.primaryUser = "ryanr";
