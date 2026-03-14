@@ -121,12 +121,14 @@
       "font-jetbrains-mono-nerd-font"
     ];
     taps = [
+      "entireio/tap"
     ];
     # Formulae that don't have good nix equivalents
     brews = [
       "azure-functions-core-tools@4"
       "sqlcmd"
       "claude-squad"
+      "entireio/tap/entire"
     ];
   };
 
