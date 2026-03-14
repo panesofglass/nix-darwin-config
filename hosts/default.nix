@@ -112,6 +112,7 @@
     casks = [
       "1password-cli"
       "alt-tab"
+      "claude-code"
       "iterm2"
       "lm-studio"
       "powershell"

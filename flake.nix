@@ -24,6 +24,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "hm-backup";
           home-manager.users.ryanr = import ./home/ryanr.nix;
           home-manager.users.ryanfreeform = import ./home/ryanfreeform.nix;
         }
