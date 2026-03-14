@@ -69,6 +69,8 @@
     ])
     fsautocomplete
     fantomas
+    fable
+    ilspycmd
     powershell
 
     # Cloud & infra
