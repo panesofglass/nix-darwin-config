@@ -139,7 +139,7 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
-      rebuild = "darwin-rebuild switch --flake ~/nix-config";
+      rebuild = "sudo darwin-rebuild switch --flake ~/nix-config";
     };
     initContent = ''
       # Cargo env (for rustup-managed toolchains)
