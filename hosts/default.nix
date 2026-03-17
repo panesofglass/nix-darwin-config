@@ -90,6 +90,7 @@
     httpie
     lftp
     inetutils
+    cloudflared
 
     # VCS / Git
     gnupg
@@ -206,6 +207,24 @@
   users.users.ryanfreeform = {
     name = "ryanfreeform";
     home = "/Users/ryanfreeform";
+  };
+
+  # ── Cloudflare Tunnel (SSH) ───────────────────────────────────────────
+  launchd.daemons.cloudflared = {
+    serviceConfig = {
+      Label = "com.cloudflare.cloudflared";
+      ProgramArguments = [
+        "${pkgs.cloudflared}/bin/cloudflared"
+        "tunnel"
+        "--config"
+        "/Users/ryanr/.cloudflared/config.yml"
+        "run"
+      ];
+      RunAtLoad = true;
+      KeepAlive = true;
+      StandardOutPath = "/var/log/cloudflared.log";
+      StandardErrorPath = "/var/log/cloudflared.log";
+    };
   };
 
   # Used for backwards compatibility

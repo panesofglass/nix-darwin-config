@@ -11,6 +11,15 @@
     };
     ".claude/settings.json".source = ../dotfiles/claude-settings.json;
     ".gitignore_global".source = ../dotfiles/gitignore_global;
+    ".cloudflared/config.yml".text = ''
+      tunnel: acd4e71f-dee0-4716-be46-95d4213d69e0
+      credentials-file: /Users/ryanr/.cloudflared/acd4e71f-dee0-4716-be46-95d4213d69e0.json
+
+      ingress:
+        - hostname: ssh.panesofglass.org
+          service: ssh://localhost:22
+        - service: http_status:404
+    '';
   };
 
   # ── Environment variables (replaces .zshenv) ─────────────────────────

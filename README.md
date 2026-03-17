@@ -46,6 +46,39 @@ nix-config/
 | tmux | catppuccin, vim-tmux-navigator, yank | same |
 | LM Studio | on PATH | not on PATH |
 
+## Cloudflare Tunnel (SSH)
+
+A cloudflared tunnel exposes SSH on `ssh.panesofglass.org`. The tunnel config is managed declaratively; the launchd daemon starts on boot and auto-restarts.
+
+**Managed by nix:**
+- `config.yml` — home-manager `home.file` in `home/ryanr.nix`
+- launchd daemon — `launchd.daemons.cloudflared` in `hosts/default.nix`
+
+**Manual (secrets, not in nix):**
+- `~/.cloudflared/<tunnel-id>.json` — tunnel credentials
+- `~/.cloudflared/cert.pem` — origin certificate (regenerable)
+
+### First-time tunnel setup
+
+```bash
+cloudflared tunnel login
+cloudflared tunnel create mac-mini
+cloudflared tunnel route dns mac-mini ssh.panesofglass.org
+rebuild
+```
+
+### Connecting from a client
+
+Install cloudflared on the client, then add to `~/.ssh/config`:
+
+```
+Host ssh.panesofglass.org
+    ProxyCommand cloudflared access ssh --hostname %h
+    User ryanr
+```
+
+Connection info and the SSH config snippet are stored in 1Password under "Cloudflared SSH Tunnel - Mac mini".
+
 ## Notes
 
 - **Erlang/Elixir do not require Java.** The BEAM VM is written in C. Java is only needed if using `jinterface` or similar JVM-interop libraries, which is uncommon. JDK 17 is installed only for ryanfreeform's Kotlin/Java projects.
