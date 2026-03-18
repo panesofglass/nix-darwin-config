@@ -48,15 +48,18 @@ nix-config/
 
 ## Cloudflare Tunnel (SSH)
 
-A cloudflared tunnel exposes SSH on `ssh.panesofglass.org`. The tunnel config is managed declaratively; the launchd daemon starts on boot and auto-restarts.
+A cloudflared tunnel exposes SSH via Cloudflare Access with short-lived certificates. The tunnel config, launchd daemon, CA public key, and sshd config are all managed declaratively.
 
 **Managed by nix:**
 - `config.yml` — home-manager `home.file` in `home/ryanr.nix`
 - launchd daemon — `launchd.daemons.cloudflared` in `hosts/default.nix`
+- Cloudflare CA public key — `environment.etc` in `hosts/default.nix`
+- sshd short-lived cert config — `environment.etc` in `hosts/default.nix`
 
 **Manual (secrets, not in nix):**
 - `~/.cloudflared/<tunnel-id>.json` — tunnel credentials
 - `~/.cloudflared/cert.pem` — origin certificate (regenerable)
+- Cloudflare Access application and policy — configured in Zero Trust dashboard
 
 ### First-time tunnel setup
 
@@ -65,6 +68,7 @@ cloudflared tunnel login
 cloudflared tunnel create mac-mini
 cloudflared tunnel route dns mac-mini ssh.panesofglass.org
 rebuild
+sudo launchctl stop com.openssh.sshd   # restart sshd to load CA config
 ```
 
 ### Connecting from a client
@@ -76,6 +80,8 @@ Host ssh.panesofglass.org
     ProxyCommand cloudflared access ssh --hostname %h
     User ryanr
 ```
+
+Cloudflare Access will prompt browser authentication and issue a short-lived SSH certificate — no SSH keys needed on the server.
 
 Connection info and the SSH config snippet are stored in 1Password under "Cloudflared SSH Tunnel - Mac mini".
 

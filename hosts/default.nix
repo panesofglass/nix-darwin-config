@@ -209,6 +209,14 @@
     home = "/Users/ryanfreeform";
   };
 
+  # ── Cloudflare SSH short-lived certificates ───────────────────────────
+  environment.etc."ssh/cloudflare_ca.pub".text =
+    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBO+lPeLulfRzdZRS5SiyiMkcmqcogKPJi3wFm1VkU1a/HLGzUg7Pe8Bpwa8IixAYc9peI0kBjDyb2szGSdyDzVU= open-ssh-ca@cloudflareaccess.org\n";
+  environment.etc."ssh/sshd_config.d/050-cloudflare-ssh-certs.conf".text = ''
+    PubkeyAuthentication yes
+    TrustedUserCAKeys /etc/ssh/cloudflare_ca.pub
+  '';
+
   # ── Cloudflare Tunnel (SSH) ───────────────────────────────────────────
   launchd.daemons.cloudflared = {
     serviceConfig = {
