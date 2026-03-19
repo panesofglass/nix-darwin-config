@@ -230,6 +230,8 @@
       ];
       RunAtLoad = true;
       KeepAlive = true;
+      ThrottleInterval = 5;
+      ProcessType = "Background";
       StandardOutPath = "/var/log/cloudflared.log";
       StandardErrorPath = "/var/log/cloudflared.log";
     };
