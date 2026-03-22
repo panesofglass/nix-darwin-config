@@ -112,6 +112,9 @@
     watchman
     fop
     unixODBC
+
+    # GUI apps (available in nixpkgs)
+    obsidian
   ];
 
   # ── Homebrew (for casks and formulae not in nixpkgs) ──────────────────
