@@ -28,7 +28,6 @@
     VISUAL = "nvim";
     LC_ALL = "en_US.UTF-8";
     ANDROID_HOME = "$HOME/Library/Android/sdk";
-    SSH_AUTH_SOCK = "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
   };
 
   home.sessionPath = [
@@ -41,11 +40,22 @@
   ];
 
   # ── SSH (replaces ~/.ssh/config) ─────────────────────────────────────
+  # Local key first, 1Password agent as fallback
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
     matchBlocks = {
       "github.com" = {
+        hostname = "github.com";
+        user = "git";
+        identityFile = "~/.ssh/id_ed25519";
+        identitiesOnly = true;
+        extraOptions = {
+          AddKeysToAgent = "yes";
+          UseKeychain = "yes";
+        };
+      };
+      "github.com-fallback" = {
         hostname = "github.com";
         user = "git";
         extraOptions = {
