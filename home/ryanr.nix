@@ -40,27 +40,21 @@
   ];
 
   # ── SSH (replaces ~/.ssh/config) ─────────────────────────────────────
-  # Local key first, 1Password agent as fallback
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
     matchBlocks = {
-      "github.com" = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = "~/.ssh/id_ed25519";
-        identitiesOnly = true;
+      "*" = {
         extraOptions = {
           AddKeysToAgent = "yes";
           UseKeychain = "yes";
         };
       };
-      "github.com-fallback" = {
+      "github.com" = {
         hostname = "github.com";
         user = "git";
-        extraOptions = {
-          IdentityAgent = "\"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";
-        };
+        identityFile = "~/.ssh/id_ed25519";
+        identitiesOnly = true;
       };
     };
   };
@@ -157,6 +151,11 @@
       rebuild = "sudo darwin-rebuild switch --flake ~/nix-config";
     };
     initContent = ''
+      # Pin SSH to macOS system agent, not 1Password (remove to restore 1Password)
+      _sys_sock=$(launchctl asuser "$(id -u)" launchctl getenv SSH_AUTH_SOCK 2>/dev/null)
+      [ -n "$_sys_sock" ] && export SSH_AUTH_SOCK="$_sys_sock"
+      unset _sys_sock
+
       # Cargo env (for rustup-managed toolchains)
       [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
     '';
