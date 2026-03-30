@@ -144,7 +144,6 @@
       "docker"
       "iterm2"
       "lm-studio"
-      "powershell"
       "visual-studio-code"
 
       # Utilities
@@ -237,6 +236,17 @@
       ProcessType = "Background";
       StandardOutPath = "/var/log/cloudflared.log";
       StandardErrorPath = "/var/log/cloudflared.log";
+    };
+  };
+
+  # ── Scheduled tasks ────────────────────────────────────────────────────
+  launchd.user.agents.cleanup = {
+    serviceConfig = {
+      Label = "com.ryanr.cleanup";
+      ProgramArguments = [ "/Users/ryanr/Code/scripts/cleanup.sh" ];
+      StartCalendarInterval = [{ Hour = 10; Minute = 0; }];
+      StandardOutPath = "/tmp/cleanup.log";
+      StandardErrorPath = "/tmp/cleanup.log";
     };
   };
 
