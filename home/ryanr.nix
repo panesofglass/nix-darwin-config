@@ -28,6 +28,7 @@
     VISUAL = "nvim";
     LC_ALL = "en_US.UTF-8";
     ANDROID_HOME = "$HOME/Library/Android/sdk";
+    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "1";
   };
 
   home.sessionPath = [
