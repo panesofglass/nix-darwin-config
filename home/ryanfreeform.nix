@@ -55,6 +55,11 @@
   # ── Git (replaces ~/.gitconfig) ──────────────────────────────────────
   programs.git = {
     enable = true;
+    signing = {
+      key = "~/.ssh/ff_ed25519.pub";
+      format = "ssh";
+      signByDefault = true;
+    };
     settings = {
       user.name = "Ryan Riley";
       user.email = "ryan@freeformagency.com";

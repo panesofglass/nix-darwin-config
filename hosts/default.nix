@@ -41,6 +41,7 @@
     # Languages & runtimes
     go
     rustup
+    bun           # JavaScript runtime & toolkit
     nodejs_22     # Replaces nvm — pinned to Node 22 LTS
     python312     # Primary Python
 
@@ -62,11 +63,13 @@
     erlang
 
     # Dotnet
-    (with dotnetCorePackages; combinePackages [
+    (with dotnetCorePackages; (combinePackages [
       sdk_8_0
       sdk_9_0
       sdk_10_0
-    ])
+    ]).overrideAttrs {
+      DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "1";
+    })
     fsautocomplete
     fantomas
     ilspycmd
@@ -111,7 +114,7 @@
     mas        # Mac App Store CLI
     watchman
     fop
-    unixODBC
+    unixodbc
 
     # GUI apps (available in nixpkgs)
     obsidian

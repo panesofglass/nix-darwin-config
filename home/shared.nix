@@ -1,11 +1,10 @@
 { pkgs, ... }:
 
 {
-  home.stateVersion = "24.05";
+  home.stateVersion = "26.05";
 
   # ── Shared dotfiles ──────────────────────────────────────────────────
   home.file = {
-    ".claude/settings.json".source = ../dotfiles/claude-settings.json;
     ".gitignore_global".source = ../dotfiles/gitignore_global;
   };
 
@@ -45,6 +44,7 @@
     enable = true;
     defaultEditor = true;
     withPython3 = true;
+    withRuby = false;
   };
 
   # ── tmux ─────────────────────────────────────────────────────────────
