@@ -118,6 +118,7 @@
 
     # GUI apps (available in nixpkgs)
     obsidian
+    meshlab
   ];
 
   # ── Homebrew (for casks and formulae not in nixpkgs) ──────────────────
@@ -137,6 +138,7 @@
       "claude-code"
       "cleanmymac"
       "discord"
+      "google-chrome"
       "microsoft-edge"
       "microsoft-teams"
       "signal"
