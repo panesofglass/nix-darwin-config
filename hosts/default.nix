@@ -135,7 +135,7 @@
       "1password-cli"
       "chatgpt"
       "claude"
-      "claude-code"
+      "claude-code@latest"
       "cleanmymac"
       "discord"
       "google-chrome"
