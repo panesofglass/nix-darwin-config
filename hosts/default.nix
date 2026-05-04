@@ -142,12 +142,11 @@
       "microsoft-edge"
       "microsoft-teams"
       "signal"
-      "slack"
+      # "slack"
       "zoom"
 
       # Dev tools
       "docker"
-      "iterm2"
       "lm-studio"
       "visual-studio-code"
 
@@ -159,11 +158,11 @@
       # Creative / hobby
       "bambu-studio"
       "blender"
-      "epic-games"
-      "obs"
+      # "epic-games"
+      # "obs"
       "raspberry-pi-imager"
       "steam"
-      "unity-hub"
+      # "unity-hub"
 
       # Fonts
       "font-fira-code-nerd-font"
